@@ -1,0 +1,16 @@
+Lab: SQL Statements
+Identify the result of each of the following SQL statements:
+SELECT * FROM users; //Selects all records and fields from the users table
+SELECT firstname, lastname FROM users AS u WHERE u.id = 25; //Selects the firstname and lastname for user with id 25 assigning to alias u
+INSERT INTO users (firstname, lastname) VALUES(James, Bond); //Inserts James Bond into users table
+UPDATE users SET firstname=Rube, lastname=Goldberg WHERE users.id=420; //Updates the firstname and lastname for user with id 420
+DELETE FROM users WHERE firstname=Rube; //Deletes any users with the firstname Rube from users table
+SELECT * FROM users ORDER BY lastname DESC; //Selects a all fields and records from the users table and sorts them in descending alpha order by lastname
+END LAB
+
+Lab: Prepared Statements
+Complete the following:
+Create a prepared statement script.
+Add a try/catch construct.
+Add a new customer record binding the customer parameters.
+END LAB
