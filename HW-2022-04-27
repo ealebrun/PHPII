@@ -14,3 +14,32 @@ Create a prepared statement script.
 Add a try/catch construct.
 Add a new customer record binding the customer parameters.
 END LAB
+
+try {
+// Get the connection instance
+$pdo = new PDO('mysql:host=localhost;dbname=phpcourse','vagrant','vagrant',
+[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+// Setup a one-off SQL statement and get a statement object
+$stmt = $pdo->prepare( 'INSERT INTO events (eventTitle, eventURL, eventDescription, eventCategory, eventDateString, eventGUID, eventOpponent)
+VALUES (:eventTitle, :eventURL, :eventDescription, :eventCategory, :eventDateString, :eventOpponent)' );
+// Hard coded input parameters
+$eventTitle = 'Wagner, Bryant';
+$eventURL = 'http://bryant.prestosports.com/sports/bsb/2021-22/schedule#6irpaohben8y4ati';
+$eventDescription = 'Baseball on May 21, 2022 at 3:00 PM: Wagner, Bryant, Conaty Park';
+$eventCategory = 'Baseball';
+$eventDateString = 'Sat, 21 May 2022 19:00:00 GMT';
+$eventGUID = 'http://bryant.prestosports.com/sports/bsb/2021-22/schedule#6irpaohben8y4at';
+$eventOpponent = 'Wagner';
+// Parameter bindings
+// The second parameter is referenced so must be an identifier
+$stmt->bindParam(1, $eventTitle);
+$stmt->bindParam(2, $eventURL);
+$stmt->bindParam(4, $eventDescription);
+$stmt->bindParam(5, $eventCategory);
+$stmt->bindParam(6, $eventDateString);
+$stmt->bindParam(7, $eventGUID);
+$stmt->bindParam(8, $eventOpponent);
+// Execute the SQL statement
+$stmt->execute();
+} catch (PDOException $e){
+// Handle
